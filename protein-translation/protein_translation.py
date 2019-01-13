@@ -18,8 +18,9 @@ def proteins(strand):
             z = itertools.takewhile(lambda value : value != 'Stop' , s)
         return list(OrderedDict.fromkeys(z))    
     else : 
-        s += [value  for (key , value) in b.items() if re.match(key , (''.join(strand))) != None ] #if the given proteins are in a list ''.join(strand) make string out of every one of them and then we can search for equivalent keys
-        z = itertools.takewhile(lambda value : value != 'Stop' , s)
+        for i in strand :
+            s += [value  for (key , value) in b.items() if re.match(key , i) != None ] #if the given proteins are in a list ''.join(strand) make string out of every one of them and then we can search for equivalent keys
+            z = itertools.takewhile(lambda value : value != 'Stop' , s)
         return list(OrderedDict.fromkeys(z))
 
 #itertools.takewhile(predicted , iterator) ====> by this method I could somehow bring while condition to my list comprehension ,
@@ -31,7 +32,8 @@ def proteins(strand):
 # repeated elements but set() function does not keep order of our . in fact orderdict.formkeys() does what set() function do but keep the order
     
 #
-
+a = ['UUU', 'UUC' , 'UAU' , 'UUG' ]
+print(proteins(a))
 
 
 
